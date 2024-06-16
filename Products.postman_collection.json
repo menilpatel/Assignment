@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "5a6489cb-94f7-45c0-8a88-80b8ca6d0c3b",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34283601"
+	},
+	"item": [
+		{
+			"name": "addproducts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"name\": \"Black Dress\",\r\n    \"description\": \"Black dress\",\r\n    \"brand\": \"GroveTech\",\r\n    \"tags\": [ \"red\", \"shirt\", \"slim fit\"],\r\n    \"category\": \"dress\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/products/addproduct",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"products",
+						"addproduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallproducts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pageindex",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pagesize",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "searchdata",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/v1/products/getallproducts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"products",
+						"getallproducts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
