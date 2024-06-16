@@ -40,7 +40,6 @@ public class ProductController {
 	@GetMapping("/getallproducts")
 	public ResponseEntity<ListDataResponse> getAllProducts(@RequestParam("pageindex") int pageindex,
 			@RequestParam("pagesize") int pagesize,
-			@RequestParam(name = "sortparam", required = false) String sortparam,
 			@RequestParam("searchdata") String searchdata) {
 		try {
 			SpResponse list = productService.getAllProducts(pageindex, pagesize, searchdata);
