@@ -16,3 +16,5 @@ Type : MySQL
 Database Name : products
 username : root 
 password :root
+
+-Postman collection and databse file at root of the folder
