@@ -1,6 +1,12 @@
 package com.javaassignment.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,16 +44,16 @@ public class ProductController {
 	}
 
 	@GetMapping("/getallproducts")
-	public ResponseEntity<ListDataResponse> getAllProducts(@RequestParam("pageindex") int pageindex,
-			@RequestParam("pagesize") int pagesize,
+	public ResponseEntity<?> getAllProducts(@RequestParam("page") int page, @RequestParam("size") int size,
 			@RequestParam("searchdata") String searchdata) {
 		try {
-			SpResponse list = productService.getAllProducts(pageindex, pagesize, searchdata);
-			return new ResponseEntity<>(new ListDataResponse(200, true, "List of products", list.getRecordCount(),
-					list.getTotalPageCount(), list.getlist()), HttpStatus.OK);
+			Pageable pageable = PageRequest.of(page, size);
+			Page<Products> products = productService.getProducts(searchdata, pageable);
+			return new ResponseEntity<>(new ListDataResponse(200, true, "List of products",
+					(int) products.getTotalElements(), products.getTotalPages(), products.getContent()), HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println("err getAllProducts : " + ex.getMessage());
-			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),
+			return new ResponseEntity<>(new ObjectResponse(500, false, "Something went wrong!", null),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

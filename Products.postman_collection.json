@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"name\": \"Black Dress\",\r\n    \"description\": \"Black dress\",\r\n    \"brand\": \"GroveTech\",\r\n    \"tags\": [ \"red\", \"shirt\", \"slim fit\"],\r\n    \"category\": \"dress\"\r\n}",
+					"raw": "{ \r\n    \"name\": \"Green Shirt\",\r\n    \"description\": \"testing desc\",\r\n    \"brand\": \"GroveTech\",\r\n    \"tags\": [ \"red\", \"shirt\", \"slim fit\"],\r\n    \"category\": \"halfsleeve\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,18 +47,18 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "pageindex",
-							"value": "1",
+							"key": "page",
+							"value": "0",
 							"type": "text"
 						},
 						{
-							"key": "pagesize",
+							"key": "size",
 							"value": "5",
 							"type": "text"
 						},
 						{
 							"key": "searchdata",
-							"value": "",
+							"value": "tshirt",
 							"type": "text"
 						}
 					]
