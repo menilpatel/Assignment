@@ -29,6 +29,11 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 
+		// Changes required:
+		// WHy have you used JDBCTemplate?
+		// JPA is available and you can write the below code with the help of JPA and it also supports paging repository, 
+		// Change the code and use JPA to complete the task.
+
 	public SpResponse getAllProducts(int pageindex, int pagesize, String searchdata) {
 		SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("SPGetAllProducts")
 				.declareParameters(new SqlParameter("PageIndex", Types.INTEGER),
