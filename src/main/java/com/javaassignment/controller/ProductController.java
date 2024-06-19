@@ -30,6 +30,11 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	// Changes required:
+	// As per the task the system should handle the 400 and 500 both type of errors.
+	// Not able to run the application so attach the images of both tasks.
+
+
 	@PostMapping("/addproduct")
 	public ResponseEntity<ObjectResponse> addProduct(@RequestBody Products products) {
 		try {
