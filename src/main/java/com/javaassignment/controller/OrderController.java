@@ -67,7 +67,7 @@ public class OrderController {
 			return new ResponseEntity<>(new ListDataResponse(200, true, "List of orders",
 					(int) orders.getTotalElements(), orders.getTotalPages(), orders.getContent()), HttpStatus.OK);
 		} catch (Exception ex) {
-			System.out.println("err getAllProducts : " + ex.getMessage());
+			System.out.println("err getAllOrders : " + ex.getMessage());
 			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
