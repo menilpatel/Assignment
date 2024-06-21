@@ -149,7 +149,8 @@
 					"formdata": [
 						{
 							"key": "page",
-							"value": "0",
+							"value": "1",
+							"description": "page start from 1",
 							"type": "text"
 						},
 						{
@@ -159,17 +160,17 @@
 						},
 						{
 							"key": "startDate",
-							"value": "2024-06-19",
+							"value": "2024-06-01",
 							"type": "text"
 						},
 						{
 							"key": "endDate",
-							"value": "2024-06-21",
+							"value": "2024-06-30",
 							"type": "text"
 						},
 						{
 							"key": "sortby",
-							"value": "createdAt",
+							"value": "created_at",
 							"description": "createdAt,amount",
 							"type": "text"
 						},

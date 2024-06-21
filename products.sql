@@ -201,6 +201,60 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'products'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `SPGetAllOrders` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetAllOrders`(
+   PageIndex INT,
+   PageSize INT,
+   startDate varchar(100),
+   endDate varchar(100),
+   SortBy varchar(100),
+   SortOrder varchar(100),
+   OUT RecordCount INT,
+   OUT TotalPageCount INT
+)
+BEGIN
+	DROP TABLE IF EXISTS `Results`;
+    
+	SET @sql = CONCAT('CREATE TEMPORARY TABLE Results AS
+    SELECT id, product_id, amount, is_deleted, created_at, updated_at 
+    FROM products.order1
+    WHERE created_at BETWEEN ''', startDate, ''' AND ''', endDate, '''
+    UNION ALL
+    SELECT id, product_id, amount, is_deleted, created_at, updated_at 
+    FROM products.order2
+    WHERE created_at BETWEEN ''', startDate, ''' AND ''', endDate, '''');
+        
+	IF (SortBy != '') THEN
+		SET @sql = CONCAT(@sql, ' order by ',SortBy,' ',SortOrder);
+	END IF;
+    
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    
+	SET RecordCount =(SELECT COUNT(*) FROM Results);
+    SET TotalPageCount = ceil(RecordCount / PageSize);
+ 
+    SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY created_at DESC) AS RowNumber 
+	FROM Results) AS temp
+    WHERE RowNumber BETWEEN(PageIndex -1) * PageSize + 1 AND(((PageIndex -1) * PageSize + 1) + PageSize) - 1;
+ 
+    DROP TEMPORARY TABLE Results;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SPGetAllProducts` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -258,4 +312,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-21 15:32:30
+-- Dump completed on 2024-06-21 19:40:59

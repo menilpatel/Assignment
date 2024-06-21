@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaassignment.entity.Order1;
 import com.javaassignment.entity.Order2;
+import com.javaassignment.response.CombinedOrder;
+import com.javaassignment.response.CombinedOrderDTO;
 import com.javaassignment.response.ListDataResponse;
 import com.javaassignment.response.ObjectResponse;
+import com.javaassignment.response.SpResponse;
 import com.javaassignment.services.OrderService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -58,14 +61,12 @@ public class OrderController {
 
 	@GetMapping("/getallorders")
 	public ResponseEntity<?> getAllOrders(@RequestParam("page") int page, @RequestParam("size") int size,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
-			@RequestParam("sortby") String sortby, @RequestParam("sortorder") String sortorder) {
+			@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
+			@RequestParam("sortby") String sortby, @RequestParam("sortorder") String sortOrder) {
 		try {
-			Pageable pageable = PageRequest.of(page, size);
-			Page<Object> orders = orderService.getCombinedOrders(startDate, endDate, sortby, sortorder, pageable);
-			return new ResponseEntity<>(new ListDataResponse(200, true, "List of orders",
-					(int) orders.getTotalElements(), orders.getTotalPages(), orders.getContent()), HttpStatus.OK);
+			SpResponse orders = orderService.getAllOrders(page, size, startDate, endDate, sortby, sortOrder);
+			return new ResponseEntity<>(new ListDataResponse(200, true, "List of orders", orders.getRecordCount(),
+					orders.getTotalPageCount(), orders.getlist()), HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println("err getAllOrders : " + ex.getMessage());
 			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),
