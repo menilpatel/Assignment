@@ -48,12 +48,12 @@
 					"formdata": [
 						{
 							"key": "page",
-							"value": "0",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "size",
-							"value": "5",
+							"value": "2",
 							"type": "text"
 						},
 						{
@@ -73,6 +73,123 @@
 						"v1",
 						"products",
 						"getallproducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addorder1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"amount\": 21.5,\r\n    \"productId\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/orders/addorder1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"orders",
+						"addorder1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addorder2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"amount\": 23.5,\r\n    \"productId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/orders/addorder2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"orders",
+						"addorder2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallorders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "page",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "size",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-06-19",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-06-21",
+							"type": "text"
+						},
+						{
+							"key": "sortby",
+							"value": "createdAt",
+							"description": "createdAt,amount",
+							"type": "text"
+						},
+						{
+							"key": "sortorder",
+							"value": "DESC",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/v1/orders/getallorders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"orders",
+						"getallorders"
 					]
 				}
 			},

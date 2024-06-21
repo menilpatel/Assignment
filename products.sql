@@ -18,6 +18,106 @@ USE `products`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `order1`
+--
+
+DROP TABLE IF EXISTS `order1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order1` (
+  `id` int NOT NULL,
+  `amount` double NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `is_deleted` bit(1) NOT NULL,
+  `product_id` int NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order1`
+--
+
+LOCK TABLES `order1` WRITE;
+/*!40000 ALTER TABLE `order1` DISABLE KEYS */;
+INSERT INTO `order1` VALUES (1,10.5,'2024-06-21 14:13:45.888000',_binary '\0',1,'2024-06-21 14:13:45.888000'),(2,10.5,'2024-06-21 14:14:12.873000',_binary '\0',5,'2024-06-21 14:14:12.873000'),(52,20,'2024-06-21 14:50:24.114000',_binary '\0',4,'2024-06-21 14:50:24.114000'),(53,8.6,'2024-06-21 14:50:30.930000',_binary '\0',4,'2024-06-21 14:50:30.930000'),(102,21.5,'2024-06-21 15:17:47.943000',_binary '\0',4,'2024-06-21 15:17:47.943000');
+/*!40000 ALTER TABLE `order1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order1_seq`
+--
+
+DROP TABLE IF EXISTS `order1_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order1_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order1_seq`
+--
+
+LOCK TABLES `order1_seq` WRITE;
+/*!40000 ALTER TABLE `order1_seq` DISABLE KEYS */;
+INSERT INTO `order1_seq` VALUES (201);
+/*!40000 ALTER TABLE `order1_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order2`
+--
+
+DROP TABLE IF EXISTS `order2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order2` (
+  `id` int NOT NULL,
+  `amount` double NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `is_deleted` bit(1) NOT NULL,
+  `product_id` int NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order2`
+--
+
+LOCK TABLES `order2` WRITE;
+/*!40000 ALTER TABLE `order2` DISABLE KEYS */;
+INSERT INTO `order2` VALUES (1,18.2,'2024-06-20 14:14:42.161000',_binary '\0',5,'2024-06-20 14:14:42.161000'),(2,18.2,'2024-06-21 14:53:32.949000',_binary '\0',3,'2024-06-21 14:53:32.949000'),(3,11,'2024-06-21 14:53:40.740000',_binary '\0',3,'2024-06-21 14:53:40.740000'),(52,22.5,'2024-06-21 15:17:55.803000',_binary '\0',3,'2024-06-21 15:17:55.803000'),(53,23.5,'2024-06-21 15:18:00.252000',_binary '\0',3,'2024-06-21 15:18:00.252000');
+/*!40000 ALTER TABLE `order2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order2_seq`
+--
+
+DROP TABLE IF EXISTS `order2_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order2_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order2_seq`
+--
+
+LOCK TABLES `order2_seq` WRITE;
+/*!40000 ALTER TABLE `order2_seq` DISABLE KEYS */;
+INSERT INTO `order2_seq` VALUES (151);
+/*!40000 ALTER TABLE `order2_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -43,7 +143,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Hugo Boss','apparel','2024-06-16 17:42:12.842522','Red hugo boss shirt',_binary '\0','Red TShirt','2024-06-16 17:42:12.842522'),(2,'Hugo Boss','slimfit','2024-06-16 18:12:10.704462','White hugo boss shirt',_binary '\0','White Shirt','2024-06-16 18:12:10.704462'),(52,'Hugo Boss','slipfit','2024-06-16 18:33:56.628084','White hugo boss shirt',_binary '\0','Purple Shirt','2024-06-16 18:33:56.628084'),(53,'Hugo Boss','slipfit','2024-06-16 18:34:13.379513','White hugo boss shirt',_binary '\0','Blue Shirt','2024-06-16 18:34:13.379513'),(54,'Hugo Boss','hoodie','2024-06-16 18:34:31.421570','White hugo boss shirt',_binary '\0','Red Hoodie','2024-06-16 18:34:31.421570'),(55,'Hugo Boss','hoodie','2024-06-16 18:34:36.585560','White hugo boss shirt',_binary '\0','Green Hoodie','2024-06-16 18:34:36.585560'),(56,'Hugo Boss','tshirt','2024-06-16 18:35:01.263560','White hugo boss shirt',_binary '\0','Black TShirt','2024-06-16 18:35:01.263560'),(57,'Hugo Boss','tshirt','2024-06-16 18:35:08.528776','White hugo boss shirt',_binary '\0','Blue TShirt','2024-06-16 18:35:08.528776'),(58,'Hugo Boss','tshirt','2024-06-16 18:35:13.868562','White hugo boss shirt',_binary '\0','Green TShirt','2024-06-16 18:35:13.868562'),(102,'GroveTech','dress','2024-06-16 18:38:11.401710','Black dress',_binary '\0','Black Dress','2024-06-16 18:38:11.401710');
+INSERT INTO `products` VALUES (1,'GroveTech','hoodie','2024-06-19 15:52:40.073595','Red t shirt',_binary '\0','Red TShirt','2024-06-19 15:52:40.073595'),(2,'GroveTech','hoodie','2024-06-19 15:57:59.315542','Red t shirt',_binary '\0','Blue TShirt','2024-06-19 15:57:59.315542'),(3,'GroveTech','tshirt','2024-06-19 15:58:09.994658','Red t shirt',_binary '\0','Green TShirt','2024-06-19 15:58:09.994658'),(4,'GroveTech','tshirt','2024-06-19 15:58:16.259013','Red t shirt',_binary '\0','Blue TShirt','2024-06-19 15:58:16.259013'),(5,'GroveTech','tshirt','2024-06-19 15:58:21.583100','Red t shirt',_binary '\0','Black TShirt','2024-06-19 15:58:21.583100'),(52,'GroveTech','shirt','2024-06-19 16:07:51.254598','Red t shirt',_binary '\0','Red Shirt','2024-06-19 16:07:51.254598'),(53,'GroveTech','shirt','2024-06-19 16:08:04.693057','testing desc',_binary '\0','Black Shirt','2024-06-19 16:08:04.693057'),(54,'GroveTech','shirt','2024-06-19 16:08:10.315723','testing desc',_binary '\0','Marun Shirt','2024-06-19 16:08:10.315723'),(55,'GroveTech','shirt','2024-06-19 16:08:15.746328','testing desc',_binary '\0','White Shirt','2024-06-19 16:08:15.746328'),(56,'GroveTech','shirt','2024-06-19 16:09:06.534775','testing desc',_binary '\0','Olive Green Shirt','2024-06-19 16:09:06.534775'),(57,'GroveTech','halfsleeve','2024-06-19 16:09:20.793188','testing desc',_binary '\0','Green Shirt','2024-06-19 16:09:20.793188');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +165,7 @@ CREATE TABLE `products_seq` (
 
 LOCK TABLES `products_seq` WRITE;
 /*!40000 ALTER TABLE `products_seq` DISABLE KEYS */;
-INSERT INTO `products_seq` VALUES (201);
+INSERT INTO `products_seq` VALUES (151);
 /*!40000 ALTER TABLE `products_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +190,7 @@ CREATE TABLE `products_tags` (
 
 LOCK TABLES `products_tags` WRITE;
 /*!40000 ALTER TABLE `products_tags` DISABLE KEYS */;
-INSERT INTO `products_tags` VALUES (1,'red'),(1,'shirt'),(1,'slim fit'),(2,'red'),(2,'shirt'),(2,'slim fit'),(52,'red'),(52,'shirt'),(52,'slim fit'),(53,'red'),(53,'shirt'),(53,'slim fit'),(54,'red'),(54,'shirt'),(54,'slim fit'),(55,'red'),(55,'shirt'),(55,'slim fit'),(56,'red'),(56,'shirt'),(56,'slim fit'),(57,'red'),(57,'shirt'),(57,'slim fit'),(58,'red'),(58,'shirt'),(58,'slim fit'),(102,'red'),(102,'shirt'),(102,'slim fit');
+INSERT INTO `products_tags` VALUES (1,'red'),(1,'shirt'),(1,'slim fit'),(2,'red'),(2,'shirt'),(2,'slim fit'),(3,'red'),(3,'shirt'),(3,'slim fit'),(4,'red'),(4,'shirt'),(4,'slim fit'),(5,'red'),(5,'shirt'),(5,'slim fit'),(52,'red'),(52,'shirt'),(52,'slim fit'),(53,'red'),(53,'shirt'),(53,'slim fit'),(54,'red'),(54,'shirt'),(54,'slim fit'),(55,'red'),(55,'shirt'),(55,'slim fit'),(56,'red'),(56,'shirt'),(56,'slim fit'),(57,'red'),(57,'shirt'),(57,'slim fit');
 /*!40000 ALTER TABLE `products_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,4 +258,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-16 18:47:21
+-- Dump completed on 2024-06-21 15:32:30

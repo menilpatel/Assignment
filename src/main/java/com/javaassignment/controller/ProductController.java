@@ -1,7 +1,5 @@
 package com.javaassignment.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javaassignment.entity.Products;
 import com.javaassignment.response.ListDataResponse;
 import com.javaassignment.response.ObjectResponse;
-import com.javaassignment.response.SpResponse;
 import com.javaassignment.services.ProductService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -53,7 +50,7 @@ public class ProductController {
 					(int) products.getTotalElements(), products.getTotalPages(), products.getContent()), HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println("err getAllProducts : " + ex.getMessage());
-			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!",0,0, null),
+			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
