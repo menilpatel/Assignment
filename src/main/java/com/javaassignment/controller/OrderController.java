@@ -1,12 +1,9 @@
 package com.javaassignment.controller;
 
-import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaassignment.entity.Order1;
 import com.javaassignment.entity.Order2;
-import com.javaassignment.response.CombinedOrder;
-import com.javaassignment.response.CombinedOrderDTO;
 import com.javaassignment.response.ListDataResponse;
 import com.javaassignment.response.ObjectResponse;
 import com.javaassignment.response.SpResponse;
@@ -67,6 +62,21 @@ public class OrderController {
 			SpResponse orders = orderService.getAllOrders(page, size, startDate, endDate, sortby, sortOrder);
 			return new ResponseEntity<>(new ListDataResponse(200, true, "List of orders", orders.getRecordCount(),
 					orders.getTotalPageCount(), orders.getlist()), HttpStatus.OK);
+		} catch (Exception ex) {
+			System.out.println("err getAllOrders : " + ex.getMessage());
+			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/getallorders1")
+	public ResponseEntity<?> getAllOrders1(@RequestParam("page") int page, @RequestParam("size") int size,
+			@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
+			@RequestParam("sortby") String sortby, @RequestParam("sortorder") String sortOrder) {
+		try {
+			Page<Map<String, Object>> orders = orderService.getCombinedOrders(page, size, startDate, endDate, sortby, sortOrder);
+			return new ResponseEntity<>(new ListDataResponse(200, true, "List of orders",
+					(int) orders.getTotalElements(), orders.getTotalPages(), orders.getContent()), HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println("err getAllOrders : " + ex.getMessage());
 			return new ResponseEntity<>(new ListDataResponse(500, false, "Something went wrong!", 0, 0, null),

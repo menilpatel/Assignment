@@ -23,6 +23,20 @@ public class Order1 {
 	@Column(name = "updated_at", nullable = false)
 	private Date updatedAt = new Date();
 
+	// No-argument constructor
+	public Order1() {
+	}
+
+	// Parameterized constructor
+	public Order1(int id, int productId, double amount, Boolean isDeleted, Date createdAt, Date updatedAt) {
+		this.id = id;
+		this.productId = productId;
+		this.amount = amount;
+		this.isDeleted = isDeleted;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
 	public int getId() {
 		return id;
 	}

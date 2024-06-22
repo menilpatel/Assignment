@@ -1,23 +1,14 @@
 package com.javaassignment.services;
 
-import java.sql.Types;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
 
 import com.javaassignment.entity.Products;
 import com.javaassignment.repository.ProductRepository;
-import com.javaassignment.response.SpResponse;
 
 @Service
 public class ProductService {
