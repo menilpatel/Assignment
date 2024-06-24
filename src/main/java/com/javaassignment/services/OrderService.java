@@ -1,9 +1,11 @@
 package com.javaassignment.services;
 
 import java.sql.Types;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -82,6 +84,7 @@ public class OrderService {
 			String sortBy, String sortOrder) {
 		Sort.Direction direction = Sort.Direction.fromString(sortOrder);
 		Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+		
 		return combinedOrderRepository.findCombinedOrders(startDate, endDate, pageable);
 	}
 }
